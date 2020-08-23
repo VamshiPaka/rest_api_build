@@ -1,23 +1,30 @@
 const express=require('express');
+const mongoose=require('mongoose');
+require('dotenv/config');
 
 const app = express();
 
+//import Routes
+
+const productsRoute=require('./routes/products');
+
+
+
+//connect to db
+
+mongoose.connect(process.env.DB_Connection,{ useNewUrlParser: true , useUnifiedTopology: true },()=>console.log('connected to DB'));
+
 
 //Middlewares(functions that are executed when a specific route is hit)
-app.use('/products',()=>{
-    console.log('This is a middleware running when products route is hit');
-})
 
-
+app.use('/products',productsRoute);
 
 //Routes
 app.get('/',(req,res)=>{
     res.send('This is home route');
 })
 
-app.get('/products',(req,res)=>{
-    res.send('This is products route');
-})
+
 
 
 
