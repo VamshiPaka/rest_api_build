@@ -1,5 +1,7 @@
 const express=require('express');
 const mongoose=require('mongoose');
+const bodyParser=require('body-parser');
+const cors=require('cors');
 require('dotenv/config');
 
 const app = express();
@@ -17,6 +19,9 @@ mongoose.connect(process.env.DB_Connection,{ useNewUrlParser: true , useUnifiedT
 
 //Middlewares(functions that are executed when a specific route is hit)
 
+app.use(bodyParser.json());
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/products',productsRoute);
 
 //Routes
