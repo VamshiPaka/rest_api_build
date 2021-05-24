@@ -1,0 +1,7 @@
+applications:
+  - name: Sample-Rest
+    instances: 1
+    routes:
+      - route: restapi-presdev.apps.eu1.mindsphere.io
+    buildpacks:
+      - https://github.com/VamshiPaka/rest_api_build
